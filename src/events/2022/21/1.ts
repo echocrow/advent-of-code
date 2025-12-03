@@ -35,7 +35,7 @@ for (const name of filo(queue)) {
   if (!math) continue
   steps.add(math)
   const [a, b] = math
-  queue.push(a), queue.push(b)
+  queue.push(a, b)
 }
 
 // Eval required math monkeys.

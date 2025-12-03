@@ -73,15 +73,13 @@ const site = new Uint8Matrix(siteWidth * siteHeight, siteWidth)
 // Count inside vs outside.
 let result = 0
 const leftDirId = idDir(Dir.left)
-{
-  for (let y = 0; y < site.height; y++) {
-    let prevTrenchId = 0
-    let isIn = false
-    for (const v of site.row(y)) {
-      if (v) (isIn = true), (prevTrenchId = v)
-      else if (prevTrenchId) isIn = !!(prevTrenchId & leftDirId)
-      if (isIn) result++
-    }
+for (let y = 0; y < site.height; y++) {
+  let prevTrenchId = 0
+  let isIn = false
+  for (const v of site.row(y)) {
+    if (v) (isIn = true) && (prevTrenchId = v)
+    else if (prevTrenchId) isIn = !!(prevTrenchId & leftDirId)
+    if (isIn) result++
   }
 }
 

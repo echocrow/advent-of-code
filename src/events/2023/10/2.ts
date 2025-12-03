@@ -77,19 +77,17 @@ const startI = maze.vecToI(startPos)
 
 // Scale maze.
 const dblMaze = new Uint8Matrix(maze.length * 4, maze.width * 2)
-{
-  for (let i = 0; i < maze.length; i++) {
-    const id = maze.$[i]!
-    const piece = pieces[id]!
-    const [x, y] = maze.iToVec(i)
-    const scaledX = x * 2
-    const scaledY = y * 2
-    dblMaze.setCell(scaledX, scaledY, id)
-    if (piece.links.includes(DIR.RIGHT))
-      dblMaze.setCell(scaledX + 1, scaledY, pieceIds['-'])
-    if (piece.links.includes(DIR.DOWN))
-      dblMaze.setCell(scaledX, scaledY + 1, pieceIds['|'])
-  }
+for (let i = 0; i < maze.length; i++) {
+  const id = maze.$[i]!
+  const piece = pieces[id]!
+  const [x, y] = maze.iToVec(i)
+  const scaledX = x * 2
+  const scaledY = y * 2
+  dblMaze.setCell(scaledX, scaledY, id)
+  if (piece.links.includes(DIR.RIGHT))
+    dblMaze.setCell(scaledX + 1, scaledY, pieceIds['-'])
+  if (piece.links.includes(DIR.DOWN))
+    dblMaze.setCell(scaledX, scaledY + 1, pieceIds['|'])
 }
 
 // Fill outside of scaled maze.

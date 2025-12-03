@@ -9,16 +9,14 @@ const BOX = 2
 
 const map = new Uint8Matrix()
 let robot = 0
-{
-  for await (const line of io.readLines()) {
-    if (!line) break
-    map.pushRow(
-      [...line].map((c, i) => {
-        if (c === '@') robot = i + map.length
-        return c === '#' ? WALL : c === 'O' ? BOX : FREE
-      }),
-    )
-  }
+for await (const line of io.readLines()) {
+  if (!line) break
+  map.pushRow(
+    [...line].map((c, i) => {
+      if (c === '@') robot = i + map.length
+      return c === '#' ? WALL : c === 'O' ? BOX : FREE
+    }),
+  )
 }
 
 const MOVES = strRec({

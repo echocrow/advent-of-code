@@ -6,7 +6,7 @@ function fmtRange(start: number, end: number): Range | null {
   return end >= start ? [start, end] : null
 }
 
-let seeds = [...(await io.readLine())?.matchAll(/\d+/g)!].map(Number).reduce(
+let seeds = [...(await io.readLine())!.matchAll(/\d+/g)].map(Number).reduce(
   (acc, n, i) => {
     if (i % 2) acc.pairs.push([acc.prev, acc.prev + n - 1])
     else acc.prev = n

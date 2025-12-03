@@ -66,10 +66,8 @@ let queue = [startI]
 let evens = 0
 let odds = 0
 let step = 0
-{
-  visited.$[startI] = visitedEven.$[startI] = 2
-  evens++
-}
+visited.$[startI] = visitedEven.$[startI] = 2
+evens++
 let isOdd = false
 while (queue.length && step < MAX_STEPS) {
   step++

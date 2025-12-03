@@ -1,3 +1,5 @@
+// biome-ignore-all lint/suspicious/noUnsafeDeclarationMerging: need to narrow inherited property
+
 export type mutVec3 = [number, number, number]
 export type vec3 = readonly [number, number, number]
 
@@ -35,7 +37,9 @@ export function parseVec3(s: string): Readonly<vec3> {
   return [Number(x), Number(y), Number(z)]
 }
 
-export interface Vec3 extends Float64Array, Omit<mutVec3, keyof Float64Array> {
+export interface Vec3
+  extends Float64Array<ArrayBuffer>,
+    Omit<mutVec3, keyof Float64Array> {
   0: number
   1: number
   2: number

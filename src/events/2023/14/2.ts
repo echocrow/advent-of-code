@@ -61,7 +61,7 @@ function getId() {
 const cycleById = new Map<bigint, number>()
 let resByCycle = new Uint32Array()
 let loopStart = -1
-let c
+let c: number
 for (c = 0; c < SPINS; c++) {
   spin()
   const id = getId()

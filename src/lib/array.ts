@@ -1,3 +1,5 @@
+// biome-ignore-all lint/complexity/noBannedTypes: need to use Function
+
 export type TypedArray =
   | Int8Array
   | Uint8Array

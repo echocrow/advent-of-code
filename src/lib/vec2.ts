@@ -1,3 +1,5 @@
+// biome-ignore-all lint/suspicious/noUnsafeDeclarationMerging: need to narrow inherited property
+
 import {posMod} from './math.js'
 import {type Vec2 as BaseVec2, VecSet} from './vec.js'
 
@@ -5,9 +7,7 @@ type InputVec2 = readonly [x: number, y: number, z?: any]
 
 export interface Vec2
   extends BaseVec2,
-    Omit<InstanceType<typeof Vec2Cls>, keyof Array<any>> {
-  new (x: number, y: number): Vec2
-}
+    Omit<InstanceType<typeof Vec2Cls>, keyof Array<any>> {}
 
 const v2 = {
   add(a: InputVec2, b: InputVec2): BaseVec2 {
@@ -46,6 +46,7 @@ const v2 = {
   },
 }
 
+// biome-ignore lint/correctness/noUnusedVariables: false positive
 interface Vec2Cls {
   0: number
   1: number
