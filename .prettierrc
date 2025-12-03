@@ -1,8 +1,0 @@
-{
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "bracketSpacing": false,
-  "semi": false,
-  "singleQuote": true,
-  "experimentalTernaries": true,
-  "importOrder": ["^#", "^[./]"]
-}

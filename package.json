@@ -6,9 +6,8 @@
     "#lib/*": "./src/lib/*"
   },
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^5.2.0",
+    "@biomejs/biome": "2.3.8",
     "@types/node": "^22.10.2",
-    "prettier": "^3.4.2",
     "typescript": "^5.7.2",
     "vite": "^6.0.5",
     "vite-node": "^2.1.8",
@@ -18,8 +17,8 @@
   "scripts": {
     "init": "mkdir -p ./io && touch ./io/in.txt ./io/out.txt",
     "gen": "vite-node src/scripts/scaffold.ts",
-    "format": "prettier . --write",
-    "check": "prettier . --check && tsc --noEmit",
+    "format": "biome check --write --unsafe",
+    "check": "biome ci",
     "start": "vite-node",
     "start:file": "[ -z ${FILE} ] && echo 'Missing $FILE var.' && exit 1 || vite-node ${FILE} -- --in=./io/in.txt --out=./io/out.txt",
     "watch": "[ -z ${FILE} ] && echo 'Missing $FILE var.' && exit 1 || vite-node --watch ${FILE} -- --in=./io/in.txt --out=./io/out.txt",
