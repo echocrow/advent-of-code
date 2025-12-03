@@ -17,7 +17,7 @@ for (let r = 0; r < 4; r++) {
     const rightTrees = scene.slice(i + 1, i + w - y)
     const blockingIdx = rightTrees.findIndex((t) => t >= tree)
     const visibleCount = blockingIdx >= 0 ? blockingIdx + 1 : rightTrees.length
-    seenCounts[t] *= visibleCount
+    seenCounts[t]! *= visibleCount
     i++
   }
 }

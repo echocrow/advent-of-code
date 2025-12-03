@@ -1,6 +1,7 @@
 import {join, relative} from 'node:path'
-import {defineConfig, normalizePath, type ResolvedConfig} from 'vite'
+import {normalizePath, type ResolvedConfig} from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import {defineConfig} from 'vitest/config'
 
 export default defineConfig({
   plugins: [

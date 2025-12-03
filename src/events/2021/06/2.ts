@@ -11,12 +11,12 @@ for await (const line of io.readLines()) {
   const pool = new BigUint64Array(MAX + 1)
 
   const fishes = line.split(',').map(Number)
-  for (const f of fishes) pool[f]++
+  for (const f of fishes) pool[f]!++
 
   for (let d = 0; d < DAYS; d++) {
     const spawns = pool[0]!
     pool.set(pool.slice(1))
-    pool[REFRESH] += spawns
+    pool[REFRESH]! += spawns
     pool[SPAWN] = spawns
   }
 

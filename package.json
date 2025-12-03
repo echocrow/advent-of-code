@@ -18,7 +18,7 @@
     "init": "mkdir -p ./io && touch ./io/in.txt ./io/out.txt",
     "gen": "vite-node src/scripts/scaffold.ts",
     "format": "biome check --write --unsafe",
-    "check": "biome ci",
+    "check": "biome ci && tsc --noEmit",
     "start": "vite-node",
     "start:file": "[ -z ${FILE} ] && echo 'Missing $FILE var.' && exit 1 || vite-node ${FILE} -- --in=./io/in.txt --out=./io/out.txt",
     "watch": "[ -z ${FILE} ] && echo 'Missing $FILE var.' && exit 1 || vite-node --watch ${FILE} -- --in=./io/in.txt --out=./io/out.txt",

@@ -22,7 +22,7 @@ for await (const line of io.readLines()) {
   const copyToId = nextId + matchCount
   copies = allocMinLen(copies, copyToId)
   const cardCounts = (copies[id] ?? 0) + 1
-  for (const i of range(nextId, copyToId)) copies[i] += cardCounts
+  for (const i of range(nextId, copyToId)) copies[i]! += cardCounts
   result += cardCounts
 }
 

@@ -40,4 +40,4 @@ const maxByteIdx = binSearch(0, bytes.length - 1, (i) => {
 })
 
 const result = map.iToVec(bytes[maxByteIdx]!)
-io.write(result)
+io.write(result.toString())

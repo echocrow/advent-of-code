@@ -83,7 +83,7 @@ while (subGraphSize === graphSize) {
   const scanThreshold = 100 // Semi-arbitrary cap; no need to scan more.
   for (const node of Node.db.values()) {
     traverseGraph(node, (edge) => {
-      const edgeCount = edgeCounts[edge.id]++
+      const edgeCount = edgeCounts[edge.id]!++
       if (edgeCount > topEdgeCount) {
         topEdgeId = edge.id
         topEdgeCount = edgeCount

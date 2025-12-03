@@ -41,8 +41,8 @@ for await (const match of io.readRegExp(/^(\w) (\d+)/m)) {
   corners.push(pos)
 }
 // Determine bounds and top horizontal move.
-const minCorner = vec2.via(corners.reduce(vec2.min, vec2()))
-const maxCorner = vec2.via(corners.reduce(vec2.max, vec2()))
+const minCorner = corners.reduce(vec2.min, vec2())
+const maxCorner = corners.reduce(vec2.max, vec2())
 const topXMoveIdx = moves.findIndex(
   ([dir], i) => dirIsHor(dir) && corners[i]![1] === minCorner[1],
 )

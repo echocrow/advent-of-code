@@ -9,7 +9,7 @@ function foldUp(before: Uint8Matrix): Uint8Matrix {
     const x = i % w
     const y = (i - x) / w
     const fromY = before.height - y - 1
-    after.$[i] += before.$[fromY * w + x] ?? 0
+    after.$[i]! += before.$[fromY * w + x] ?? 0
   }
   return after
 }

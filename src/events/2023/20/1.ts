@@ -55,7 +55,7 @@ const signals: [lows: number, highs: number] = [0, 0]
 for (let p = 1; p <= 1000; p++) {
   const queue = [[getModule('button')!, getModule('broadcaster')] as const]
   for (const [from, to] of fifo(queue)) {
-    signals[+from.sig]++
+    signals[+from.sig]!++
     if (to?.process(from)) for (const next of to.outputs) queue.push([to, next])
   }
 }

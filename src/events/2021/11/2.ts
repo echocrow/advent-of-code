@@ -2,12 +2,12 @@ import io from '#lib/io.js'
 import {squareNeighbors, Uint8Matrix} from '#lib/matrix.js'
 
 function tick(wales: Uint8Matrix) {
-  for (const w of wales.$.keys()) wales.$[w]++
+  for (const w of wales.$.keys()) wales.$[w]!++
   let f: number
   while ((f = wales.$.findIndex((w) => w > 9)) >= 0) {
     wales.$[f] = 0
     for (const n of squareNeighbors(wales, f)) {
-      if (wales.$[n]! > 0 && wales.$[n]! <= 9) wales.$[n]++
+      if (wales.$[n]! > 0 && wales.$[n]! <= 9) wales.$[n]!++
     }
   }
 }

@@ -10,18 +10,18 @@ export interface Vec2
     Omit<InstanceType<typeof Vec2Cls>, keyof Array<any>> {}
 
 const v2 = {
-  add(a: InputVec2, b: InputVec2): BaseVec2 {
-    return [a[0] + b[0], a[1] + b[1]]
+  add(a: InputVec2, b: InputVec2): Vec2 {
+    return vec2(a[0] + b[0], a[1] + b[1])
   },
-  subtract(a: InputVec2, b: InputVec2): BaseVec2 {
-    return [a[0] - b[0], a[1] - b[1]]
+  subtract(a: InputVec2, b: InputVec2): Vec2 {
+    return vec2(a[0] - b[0], a[1] - b[1])
   },
 
-  min(a: InputVec2, b: InputVec2): BaseVec2 {
-    return [Math.min(a[0], b[0]), Math.min(a[1], b[1])]
+  min(a: InputVec2, b: InputVec2): Vec2 {
+    return vec2(Math.min(a[0], b[0]), Math.min(a[1], b[1]))
   },
-  max(a: InputVec2, b: InputVec2): BaseVec2 {
-    return [Math.max(a[0], b[0]), Math.max(a[1], b[1])]
+  max(a: InputVec2, b: InputVec2): Vec2 {
+    return vec2(Math.max(a[0], b[0]), Math.max(a[1], b[1]))
   },
 
   len(v: InputVec2): number {
