@@ -67,13 +67,11 @@ export async function testPart(
     })
   } else {
     describe(testName, async () => {
-      test.each(spec.map(([input, expect], i) => [i + 1, input, expect]))(
-        '#%d',
-        async (idx, input, want) => {
-          await expectPart(partPath, input, want, idx)
-        },
-        {sequential: true},
-      )
+      test.sequential.each(
+        spec.map(([input, expect], i) => [i + 1, input, expect]),
+      )('#%d', async (idx, input, want) => {
+        await expectPart(partPath, input, want, idx)
+      })
     })
   }
 }
