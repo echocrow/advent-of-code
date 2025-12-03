@@ -38,7 +38,7 @@ const re = joinRegExps([aRe, bRe, pRe], '\n', 'm')
 
 let result = 0
 for await (const match of io.readRegExp(re)) {
-  let [, ax = 0, ay = 0, bx = 0, by = 0, px = 0, py = 0] = match.map(Number)
+  const [, ax = 0, ay = 0, bx = 0, by = 0, px = 0, py = 0] = match.map(Number)
 
   const a = (px * by - py * bx + pd * (by - bx)) / (ax * by - ay * bx)
   if (!Number.isSafeInteger(a)) continue

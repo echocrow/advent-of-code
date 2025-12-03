@@ -17,7 +17,7 @@ export function dedent(str: string | readonly string[]): string {
     if (!indents) break
   }
   if (indents) {
-    str = str.replaceAll(new RegExp(`^[^\S\n]{${indents}}`, 'gm'), '')
+    str = str.replaceAll(new RegExp(`^[^S\n]{${indents}}`, 'gm'), '')
   }
 
   return str

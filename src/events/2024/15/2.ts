@@ -10,7 +10,7 @@ const BOX = 1 << 2
 const BOX_LEFT = BOX | 0
 const BOX_RIGHT = BOX | 1
 
-let map = new Uint8Matrix()
+const map = new Uint8Matrix()
 let robot = 0
 {
   const TILES = strRec({
@@ -21,7 +21,7 @@ let robot = 0
   for await (const line of io.readLines()) {
     if (!line) break
     const row = [...line]
-    const robotY = row.findIndex((c) => c === '@')
+    const robotY = row.indexOf('@')
     if (robotY >= 0) robot = robotY * 2 + map.length
     map.pushRow(row.flatMap((c) => TILES[c] ?? TILES.FREE))
   }

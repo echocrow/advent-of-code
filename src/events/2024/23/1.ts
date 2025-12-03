@@ -10,9 +10,9 @@ for await (const line of io.readLines()) {
   const shared = aCon.intersection(bCon)
   if (shared.size)
     result +=
-      a.startsWith('t') || b.startsWith('t') ?
-        shared.size
-      : count(filter(shared, (c) => c.startsWith('t')))
+      a.startsWith('t') || b.startsWith('t')
+        ? shared.size
+        : count(filter(shared, (c) => c.startsWith('t')))
 }
 
 io.write(result)

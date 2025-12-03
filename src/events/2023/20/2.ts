@@ -40,9 +40,7 @@ for await (const [_, pre, name, outs] of io.readRegExp(/([%&])?(\w+) -> (.+)/, {
   appendix: 'button -> broadcaster',
 })) {
   const ModCls =
-    pre === '%' ? FlipFlipModule
-    : pre === '&' ? ConjunctionModule
-    : Module
+    pre === '%' ? FlipFlipModule : pre === '&' ? ConjunctionModule : Module
   modules.set(name!, new ModCls(name!))
   const outNames = outs!.split(', ')
   for (const out of outNames) inWires.get(out).push(name!)

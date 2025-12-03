@@ -111,8 +111,8 @@ class Tower {
 // after some crunching.
 const cycleLen = lcm(rockShapes.length, wind.length)
 const ROCK_POS_BIT_LEN = 3n
-let map = new Tower(7)
-let rock = new Rock(new Uint8Matrix(), 0, 0)
+const map = new Tower(7)
+const rock = new Rock(new Uint8Matrix(), 0, 0)
 const snaps: bigint[] = []
 const heights: bigint[] = []
 let repeat = -1

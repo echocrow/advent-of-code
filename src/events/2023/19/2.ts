@@ -33,7 +33,8 @@ class Rule {
     public readonly res: string,
   ) {}
   eval(part: Part): readonly [pass: Part | null, fail: Part | null] {
-    const {lt, xmas} = this
+    const xmas = this.xmas
+    const lt = this.lt
     const rng = part[xmas]
     // Check if full range passes.
     if (lt ? rng[1] < this.val : rng[0] > this.val) return [part, null]

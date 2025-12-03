@@ -27,7 +27,7 @@ class Digit {
   }
 
   isPending(): boolean {
-    return isNaN(this.num)
+    return Number.isNaN(this.num)
   }
 
   solve(num: number) {

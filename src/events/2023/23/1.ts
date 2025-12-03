@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
 import {filo} from '#lib/iterable.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 import {strRec} from '#lib/types.js'
 
 enum Cell {

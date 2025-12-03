@@ -15,6 +15,6 @@ const input = dedent`
 
 await testPart(import('./1.js?url'), [input, 374])
 await testPart(import('./2.js?url'), [
-  ['__growth=10\n' + input, 1030],
-  ['__growth=100\n' + input, 8410],
+  [`__growth=10\n${input}`, 1030],
+  [`__growth=100\n${input}`, 8410],
 ])

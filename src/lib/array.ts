@@ -13,20 +13,31 @@ export type TypedArray =
 
 export type AnyArray = TypedArray | Array<any>
 
-type ArrayGetConstructor<T extends AnyArray> =
-  T extends Int8Array ? Int8ArrayConstructor
-  : T extends Uint8Array ? Uint8ArrayConstructor
-  : T extends Uint8ClampedArray ? Uint8ClampedArrayConstructor
-  : T extends Int16Array ? Int16ArrayConstructor
-  : T extends Uint16Array ? Uint16ArrayConstructor
-  : T extends Int32Array ? Int32ArrayConstructor
-  : T extends Uint32Array ? Uint32ArrayConstructor
-  : T extends Float32Array ? Float32ArrayConstructor
-  : T extends Float64Array ? Float64ArrayConstructor
-  : T extends BigInt64Array ? BigInt64ArrayConstructor
-  : T extends BigUint64Array ? BigUint64ArrayConstructor
-  : T extends Array<unknown> ? ArrayConstructor
-  : never
+type ArrayGetConstructor<T extends AnyArray> = T extends Int8Array
+  ? Int8ArrayConstructor
+  : T extends Uint8Array
+    ? Uint8ArrayConstructor
+    : T extends Uint8ClampedArray
+      ? Uint8ClampedArrayConstructor
+      : T extends Int16Array
+        ? Int16ArrayConstructor
+        : T extends Uint16Array
+          ? Uint16ArrayConstructor
+          : T extends Int32Array
+            ? Int32ArrayConstructor
+            : T extends Uint32Array
+              ? Uint32ArrayConstructor
+              : T extends Float32Array
+                ? Float32ArrayConstructor
+                : T extends Float64Array
+                  ? Float64ArrayConstructor
+                  : T extends BigInt64Array
+                    ? BigInt64ArrayConstructor
+                    : T extends BigUint64Array
+                      ? BigUint64ArrayConstructor
+                      : T extends Array<unknown>
+                        ? ArrayConstructor
+                        : never
 
 /**
  * Ensure array `arr` is at least `minLen` long.
@@ -42,7 +53,7 @@ export function allocArrLen<T extends AnyArray & {constructor: Function}>(
   if (arr.length >= minLen) return arr
   const newLen = Math.max(arr.length * 2, minLen)
   // Handle regular array.
-  if (arr instanceof Array)
+  if (Array.isArray(arr))
     return arr.concat(copyEmptyArr(arr, newLen - arr.length)) as T
   // Handle typed array.
   const Constructor = arr.constructor as new (
@@ -73,7 +84,7 @@ export function setArr<T extends AnyArray>(
   vals: ArrayLike<T[number]>,
   offset = 0,
 ): T {
-  if (arr instanceof Array)
+  if (Array.isArray(arr))
     for (let i = 0; i < vals.length; i++) arr[i + offset] = vals[i]
   else arr.set(vals, offset)
   return arr

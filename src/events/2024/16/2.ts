@@ -36,7 +36,7 @@ const MOVES = {
 } as const
 
 let shortestCost = 0
-let shortestPaths: number[][] = []
+const shortestPaths: number[][] = []
 const costs = new Uint32Array(maze.length * 4)
 const queue = new PriorityQueue(0, {p: start, dir: Dir.R, path: [start]})
 for (const {

@@ -9,7 +9,7 @@ for await (const line of io.readLines()) {
 const seenCounts = new Uint32Array(forest.length).fill(1)
 for (let r = 0; r < 4; r++) {
   const scene = forest.rotate(r)
-  let w = scene.width
+  const w = scene.width
   let i = 0
   for (const t of forest.rotatedKeys(r)) {
     const tree = forest.$[t]!

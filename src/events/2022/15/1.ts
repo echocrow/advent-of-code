@@ -24,7 +24,7 @@ const TARGET_Y = GET_TARGET_Y(sensors.length)
 // Scan.
 let covered = 0
 for (let x = minX; x < maxX; x++) {
-  let p = vec2(x, TARGET_Y)
+  const p = vec2(x, TARGET_Y)
   for (const s of sensors) {
     if (p.subtract(s).taxiLen <= s[2]) {
       covered++

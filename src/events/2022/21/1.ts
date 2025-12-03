@@ -17,7 +17,7 @@ const nums = new Map<string, number>()
 for await (const line of io.readLines()) {
   const [name = '', rightHand = ''] = line.split(': ')
   const num = Number(rightHand)
-  if (isNaN(num)) {
+  if (Number.isNaN(num)) {
     const [a = '', opSign = '', b = ''] = rightHand.split(' ')
     mathMonkeys.set(name, [a, b, ops[opSign as OpSign], name])
   } else {

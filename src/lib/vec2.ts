@@ -1,5 +1,5 @@
 import {posMod} from './math.js'
-import {VecSet, type Vec2 as BaseVec2} from './vec.js'
+import {type Vec2 as BaseVec2, VecSet} from './vec.js'
 
 type InputVec2 = readonly [x: number, y: number, z?: any]
 
@@ -118,10 +118,9 @@ class Vec2Cls extends Array {
   }
 
   *range(to: Vec2, inclusive = false) {
-    const from = this
-    const d = to.subtract(from)
+    const d = to.subtract(this)
     const steps = Math.max(Math.abs(d[0]), Math.abs(d[1]))
-    for (let i = 0; i < steps; i++) yield from.lerp(to, i / steps)
+    for (let i = 0; i < steps; i++) yield this.lerp(to, i / steps)
     if (inclusive) yield to
   }
 

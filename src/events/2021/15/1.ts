@@ -4,11 +4,11 @@ import {MemoQueue} from '#lib/queue.js'
 
 // Parse.
 const map = new Uint8Matrix()
-for await (let line of io.readLines()) {
+for await (const line of io.readLines()) {
   map.pushRow([...line].map(Number))
 }
-let start = 0
-let end = map.length - 1
+const start = 0
+const end = map.length - 1
 
 // Dijkstra search.
 const queue = new MemoQueue(0, start)

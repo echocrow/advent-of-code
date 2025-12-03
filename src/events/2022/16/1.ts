@@ -55,7 +55,7 @@ const allOpened = valveCombos - 1
 const optLen = START_OPT.length
 const queue = new Uint16Array(optLen * 128)
 let q = 0
-let item = START_OPT.slice()
+const item = START_OPT.slice()
 let best = 0
 function evalOptions(): void {
   const vId = item[0]!

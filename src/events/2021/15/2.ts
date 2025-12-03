@@ -14,12 +14,12 @@ function* expand(nums: Iterable<number>) {
 
 // Parse.
 let map = new Uint8Matrix()
-for await (let line of io.readLines()) {
+for await (const line of io.readLines()) {
   map.pushRow(new Uint8Array(expand([...line].map(Number))))
 }
 map = new Uint8Matrix(expand(map), map.width)
-let start = 0
-let end = map.length - 1
+const start = 0
+const end = map.length - 1
 
 // Dijkstra search.
 const queue = new MemoQueue(0, start)

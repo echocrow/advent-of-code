@@ -9,8 +9,8 @@ class Board {
     this.#cols = nums.map((_, y) => nums.map((_, x) => nums[x]?.[y] ?? 0))
   }
   mark(num: number) {
-    this.#rows = this.#rows.map((r) => r.filter((n) => n != num))
-    this.#cols = this.#cols.map((c) => c.filter((n) => n != num))
+    this.#rows = this.#rows.map((r) => r.filter((n) => n !== num))
+    this.#cols = this.#cols.map((c) => c.filter((n) => n !== num))
   }
   isComplete(): boolean {
     return (

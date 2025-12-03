@@ -1,5 +1,5 @@
 import io from '#lib/io.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 
 const STEPS = Number((await io.readCfgLine('__steps')) ?? 64)
 
@@ -17,7 +17,7 @@ let result = +parityOk
 garden.$[startI] = 1
 for (let s = 1; s <= STEPS; s++) {
   parityOk = !parityOk
-  let nextQueue: typeof queue = []
+  const nextQueue: typeof queue = []
   for (const currI of queue) {
     for (const i of neighbors(garden, currI)) {
       if (garden.$[i]) continue

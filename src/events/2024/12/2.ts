@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
 import {entries, filo, sum} from '#lib/iterable.js'
-import {neighbors, Uint16Matrix, Uint8Matrix} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix, Uint16Matrix} from '#lib/matrix.js'
 
 const srcGarden = new Uint8Matrix()
 for await (const line of io.readLines())

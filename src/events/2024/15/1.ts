@@ -7,7 +7,7 @@ const FREE = 0
 const WALL = 1
 const BOX = 2
 
-let map = new Uint8Matrix()
+const map = new Uint8Matrix()
 let robot = 0
 {
   for await (const line of io.readLines()) {
@@ -15,11 +15,7 @@ let robot = 0
     map.pushRow(
       [...line].map((c, i) => {
         if (c === '@') robot = i + map.length
-        return (
-          c === '#' ? WALL
-          : c === 'O' ? BOX
-          : FREE
-        )
+        return c === '#' ? WALL : c === 'O' ? BOX : FREE
       }),
     )
   }

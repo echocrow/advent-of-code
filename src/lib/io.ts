@@ -1,5 +1,5 @@
 import {Console} from 'node:console'
-import {createReadStream, createWriteStream, writeFileSync} from 'node:fs'
+import {createReadStream, createWriteStream, type writeFileSync} from 'node:fs'
 import {
   createInterface,
   type Interface as ReadlineInterface,
@@ -13,6 +13,7 @@ class IO {
   #_in: AsyncIterableIterator<string> | undefined = undefined
   #_out: Writable | undefined = undefined
   logSilent = false
+  // biome-ignore lint/correctness/noUnusedPrivateClassMembers: false positive
   #logged = false
   #buffer: string | undefined = undefined
   #appendix: string | undefined = undefined
@@ -45,7 +46,7 @@ class IO {
 
     let out = ''
     this.output = new Writable({
-      write(chunk, encoding, cb) {
+      write(chunk, _encoding, cb) {
         out += String(chunk)
         cb()
       },
@@ -106,15 +107,12 @@ class IO {
     let file = this.#readBuffer()
     if (file) file += '\n'
     file ??= ''
-    for await (const chunk of this.#in) file += chunk + '\n'
+    for await (const chunk of this.#in) file += `${chunk}\n`
     return file.slice(0, -1)
   }
 
   async *readLines(
-    opts: {
-      rows?: number
-      flush?: boolean
-    } = {},
+    opts: {rows?: number; flush?: boolean} = {},
   ): AsyncGenerator<string, void, undefined> {
     let r = 0
     let buff = ''
@@ -182,7 +180,7 @@ class IO {
       message[0] !== '\n' &&
       message.includes('\n')
     )
-      message = '\n' + message
+      message = `\n${message}`
     this.#console.info(new Date(), ':', message, ...moreMessage)
   }
   clearLog() {
@@ -234,7 +232,7 @@ class IO {
   }
 
   #promptRl: ReadlineInterface | undefined
-  async prompt(query = ''): Promise<string | void> {
+  async prompt(query = ''): Promise<string | undefined> {
     if (this.logSilent) return
     this.#promptRl ??= createInterface({
       input: process.stdin,

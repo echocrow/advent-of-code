@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
-import vec2 from '#lib/vec2.js'
 import vec from '#lib/vec.js'
+import vec2 from '#lib/vec2.js'
 
 const GET_MAX_DIST = (sensorsLen: number) => (sensorsLen < 15 ? 20 : 4000000)
 

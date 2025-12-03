@@ -1,7 +1,7 @@
 import io from '#lib/io.js'
 
-let locks: number[] = []
-let keys: number[] = []
+const locks: number[] = []
+const keys: number[] = []
 {
   let isKey: boolean | null = null
   let acc = 0

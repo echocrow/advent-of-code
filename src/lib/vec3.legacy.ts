@@ -36,9 +36,9 @@ export function parseVec3(s: string): Readonly<vec3> {
 }
 
 export interface Vec3 extends Float64Array, Omit<mutVec3, keyof Float64Array> {
-  [0]: number
-  [1]: number
-  [2]: number
+  0: number
+  1: number
+  2: number
 }
 export class Vec3 extends Float64Array {
   constructor(x: number, y: number, z: number) {

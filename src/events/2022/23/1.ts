@@ -48,9 +48,9 @@ for (let r = 0; r < ROUNDS; r++) {
     // Eval rules for elf.
     const okRules = [...roundRules(r)].filter((rule) => testRule(pos, rule))
     let move =
-      okRules.length > 0 && okRules.length < rules.length ?
-        okRules[0]![0]
-      : vec2()
+      okRules.length > 0 && okRules.length < rules.length
+        ? okRules[0]![0]
+        : vec2()
     let goto = pos.add(move)
 
     // Check if preferred spot is taken.

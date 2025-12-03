@@ -47,11 +47,15 @@ function checkWire(wire: Wire, inId = Number(wire.in0.slice(1)), depth = 0) {
   // Check input wire.
   if (!depth) {
     const wantOutsLen =
-      !inId && gate === 'AND' ? 2
-      : !inId && gate === 'XOR' ? 0
-      : gate === 'AND' ? 1
-      : gate === 'XOR' ? 2
-      : -1
+      !inId && gate === 'AND'
+        ? 2
+        : !inId && gate === 'XOR'
+          ? 0
+          : gate === 'AND'
+            ? 1
+            : gate === 'XOR'
+              ? 2
+              : -1
     if (outs.length !== wantOutsLen) return badWires.push(wire)
     if (!inId && gate === 'XOR' && out !== fmtZOut(inId))
       return badWires.push(wire)

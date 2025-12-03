@@ -16,7 +16,7 @@ class MapCounter<K> extends Map<K, number> {
 
 const SEQ_LEN = 14
 function findStart(line: string): number {
-  let buffer = new MapCounter<string>()
+  const buffer = new MapCounter<string>()
   let i = 0
   for (const c of line) {
     if (i >= SEQ_LEN) buffer.dec(line[i - SEQ_LEN] ?? '')
@@ -27,7 +27,7 @@ function findStart(line: string): number {
   throw 'not found'
 }
 
-let starts: number[] = []
+const starts: number[] = []
 for await (const line of io.readLines()) {
   starts.push(findStart(line) + 1)
 }

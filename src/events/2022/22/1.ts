@@ -55,7 +55,7 @@ type Action = number | Turn
 const actions: Action[] = [...instContents.matchAll(/(?:[\d]+|R|L)/g)].map(
   ([match]) => {
     const moves = Number(match)
-    return !isNaN(moves) ? moves : (match as Turn)
+    return !Number.isNaN(moves) ? moves : (match as Turn)
   },
 )
 
@@ -89,7 +89,7 @@ function step(from: number, angle: Dir): number {
 }
 
 // Move.
-let pos = map.$.findIndex((c) => c === Cell.Free)
+let pos = map.$.indexOf(Cell.Free)
 let angle: Dir = Dir.R
 for (const action of actions) {
   // Handle rotation.

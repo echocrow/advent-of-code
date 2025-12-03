@@ -8,9 +8,9 @@ const MAX = SPAWN
 
 let result = BigInt(0)
 for await (const line of io.readLines()) {
-  let pool = new BigUint64Array(MAX + 1)
+  const pool = new BigUint64Array(MAX + 1)
 
-  let fishes = line.split(',').map(Number)
+  const fishes = line.split(',').map(Number)
   for (const f of fishes) pool[f]++
 
   for (let d = 0; d < DAYS; d++) {

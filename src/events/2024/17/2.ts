@@ -44,7 +44,7 @@ function run(a: number) {
   regA = a
   regB = regC = pointer = 0
   while (pointer < program.length) {
-    let oldPointer = pointer
+    const oldPointer = pointer
     const out = ops[program[pointer]!]!()
     if (out !== undefined) return out
     pointer += 2 * +!(pointer - oldPointer)

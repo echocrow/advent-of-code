@@ -18,21 +18,21 @@ for await (const line of io.readLines()) {
   }
   for (const corner of corners) maxV = maxV.max(corner)
 }
-let floorY = maxV[1] + 2
+const floorY = maxV[1] + 2
 
 // Pour.
 let grains = 0
-pour: while (true) {
+while (true) {
   let sand = vec2.from(SAND_SRC)
   grains++
-  fall: while (true) {
+  while (true) {
     const next = SAND_MOVES.map((move) => move.add(sand)).find(
       (next) => !wall.has(next.fmt()),
     )
-    if (!next || next[1] >= floorY) break fall
+    if (!next || next[1] >= floorY) break
     sand = next
   }
-  if (sand.equals(SAND_SRC)) break pour
+  if (sand.equals(SAND_SRC)) break
   wall.set(sand.fmt(), true)
 }
 

@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
 import {sum} from '#lib/iterable.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 
 const TOP_HEIGHT = 9
 

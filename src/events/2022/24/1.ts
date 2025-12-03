@@ -2,8 +2,8 @@ import io from '#lib/io.js'
 import memoize from '#lib/memo.js'
 import {PriorityQueue} from '#lib/queue.js'
 import {strRec} from '#lib/types.js'
-import vec2, {type Vec2} from '#lib/vec2.js'
 import vec, {VecSet} from '#lib/vec.js'
+import vec2, {type Vec2} from '#lib/vec2.js'
 
 // Parse.
 let mapW = 0
@@ -50,7 +50,7 @@ const moves: readonly Vec2[] = [
 const start = vec2(0, -1)
 const end = vec2(mapW - 1, mapH)
 const queue = new PriorityQueue(0, [0, start] as [time: number, pos: Vec2])
-let visited = new VecSet()
+const visited = new VecSet()
 search: for (const {item} of queue) {
   const [time, pos] = item
   const nextTime = time + 1

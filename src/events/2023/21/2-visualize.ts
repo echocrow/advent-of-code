@@ -1,6 +1,6 @@
 import {createInterface} from 'node:readline/promises'
 import io from '#lib/io.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 import vec2 from '#lib/vec2.js'
 
 // Config.
@@ -34,7 +34,7 @@ for (let y = 0; y < srcGarden.height; y++) {
   const row = new Uint8Array(srcGarden.row(y))
   for (let cy = 0; cy < scale; cy++) {
     for (let cx = 0; cx < scale; cx++) {
-      let i = garden.vecToI(srcGarden.width * cx, srcGarden.height * cy + y)
+      const i = garden.vecToI(srcGarden.width * cx, srcGarden.height * cy + y)
       garden.$.set(row, i)
     }
   }
@@ -42,21 +42,20 @@ for (let y = 0; y < srcGarden.height; y++) {
 
 const visChars = [' ', '#', 'O']
 const ySeparator =
-  ('-'.repeat(srcGarden.width) + '+').repeat(scale - 1) +
+  `${'-'.repeat(srcGarden.width)}+`.repeat(scale - 1) +
   '-'.repeat(srcGarden.width)
 function fmtGarden(garden: Uint8Matrix) {
   return garden.fmt((v, i) => {
     let sep = ''
     const [x, y] = garden.iToVec(i)
-    if (SEPARATE && !x && y && !(y % srcGarden.height)) sep += ySeparator + '\n'
+    if (SEPARATE && !x && y && !(y % srcGarden.height)) sep += `${ySeparator}\n`
     if (SEPARATE && x && !(x % srcGarden.width)) sep += '|'
     return sep + visChars[v]!
   }, 0)
 }
 
-const rl =
-  INTERACTIVE ?
-    createInterface({input: process.stdin, output: process.stdout})
+const rl = INTERACTIVE
+  ? createInterface({input: process.stdin, output: process.stdout})
   : undefined
 
 const visited = new Uint8Matrix(garden)
@@ -75,7 +74,7 @@ let isOdd = false
 while (queue.length && step < MAX_STEPS) {
   step++
   isOdd = !isOdd
-  let nextQueue: typeof queue = []
+  const nextQueue: typeof queue = []
   const newReachGarden = new Uint8Matrix(garden)
   for (const currI of queue) {
     for (const i of neighbors(visited, currI)) {

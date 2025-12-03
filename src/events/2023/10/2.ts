@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
 import {filo} from '#lib/iterable.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 import vec2, {type Vec2} from '#lib/vec2.js'
 
 const DIR = {
@@ -26,7 +26,7 @@ const pieceIds = Object.fromEntries(
 
 // Parse maze.
 let startPos = vec2()
-let maze = new Uint8Matrix()
+const maze = new Uint8Matrix()
 for await (const line of io.readLines()) {
   const pieces = ([...line] as PieceChar[]).map(
     (char, i) => pieceIds[char] ?? ((startPos = vec2(i, maze.height)), 0),
@@ -46,21 +46,23 @@ const startI = maze.vecToI(startPos)
   const linksLeft = checkNeighborConnects(startPos, DIR.LEFT)
   const linksUp = checkNeighborConnects(startPos, DIR.UP)
   const linksRight = checkNeighborConnects(startPos, DIR.RIGHT)
-  const startChar: (typeof pieces)[number]['char'] =
-    linksLeft ?
-      linksUp ? 'J'
-      : linksRight ? '-'
-      : '7'
-    : linksUp ?
-      linksRight ? 'L'
-      : '|'
-    : 'F'
+  const startChar: (typeof pieces)[number]['char'] = linksLeft
+    ? linksUp
+      ? 'J'
+      : linksRight
+        ? '-'
+        : '7'
+    : linksUp
+      ? linksRight
+        ? 'L'
+        : '|'
+      : 'F'
   maze.$[startI] = pieceIds[startChar]
 }
 
 // Clean up non-maze pieces.
 {
-  let noisyMaze = new Uint8Array(maze.$)
+  const noisyMaze = new Uint8Array(maze.$)
   maze.$.fill(0)
   let posI = startI as number | undefined
   while (posI !== undefined) {
@@ -92,7 +94,7 @@ const dblMaze = new Uint8Matrix(maze.length * 4, maze.width * 2)
 
 // Fill outside of scaled maze.
 {
-  const outsideId = pieceIds['O']
+  const outsideId = pieceIds.O
   // Start from the four corners.
   const queue = [
     0,

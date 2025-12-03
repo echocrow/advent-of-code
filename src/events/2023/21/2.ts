@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
 import {map, sum} from '#lib/iterable.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 
 const STEPS = Number((await io.readCfgLine('__steps')) ?? 26501365)
 
@@ -22,7 +22,7 @@ function countStepsFrom(x: number, y: number) {
   counts.push(isOdd ? odds : evens)
   while (queue.length) {
     isOdd = !isOdd
-    let nextQueue: typeof queue = []
+    const nextQueue: typeof queue = []
     for (const currI of queue) {
       for (const i of neighbors(visited, currI)) {
         if (visited.$[i]) continue

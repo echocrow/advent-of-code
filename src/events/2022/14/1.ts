@@ -28,11 +28,11 @@ maxV = maxV.add(vec2(1, 1))
 let grains = 0
 pour: while (true) {
   let sand = vec2.from(SAND_SRC)
-  fall: while (true) {
+  while (true) {
     const next = SAND_MOVES.map((move) => move.add(sand)).find(
       (next) => !wall.has(next.fmt()),
     )
-    if (!next) break fall
+    if (!next) break
     if (!next.inArea(minV, maxV)) break pour
     sand = next
   }

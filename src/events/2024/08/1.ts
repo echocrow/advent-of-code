@@ -1,6 +1,6 @@
 import {pairs} from '#lib/array.js'
 import io from '#lib/io.js'
-import vec, {Vec2Set, type Vec2} from '#lib/vec2.js'
+import vec, {type Vec2, Vec2Set} from '#lib/vec2.js'
 
 // Parse map.
 const mapWidth = await io.peekLineLen()

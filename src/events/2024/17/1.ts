@@ -31,14 +31,14 @@ const ops = [
   /* bst */ () => (regB = comboOperand() & 7),
   /* jnz */ () => regA && (pointer = operand()),
   /* bxc */ () => (regB = regB ^ regC),
-  /* out */ () => (result += ',' + (comboOperand() & 7)),
+  /* out */ () => (result += `,${comboOperand() & 7}`),
   /* bdv */ () => (regB = (regA >>> comboOperand()) | 0),
   /* cdv */ () => (regC = (regA >>> comboOperand()) | 0),
 ]
 
 // Run program.
 while (pointer < program.length) {
-  let oldPointer = pointer
+  const oldPointer = pointer
   ops[program[pointer]!]!()
   pointer += 2 * +!(pointer - oldPointer)
 }

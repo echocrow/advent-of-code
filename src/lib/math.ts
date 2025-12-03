@@ -14,11 +14,7 @@ export function lcm(a: number, b: number): number {
 }
 
 export function cmp(a: number, b: number): number {
-  return (
-    a < b ? -1
-    : a > b ? 1
-    : 0
-  )
+  return a < b ? -1 : a > b ? 1 : 0
 }
 
 export function countDigits(num: number): number {

@@ -52,7 +52,7 @@ class Edge {
 
 function traverseGraph(node: Node, onVisit: (edge: Edge) => void) {
   let visited = 0n
-  let queue = [node]
+  const queue = [node]
   visited |= node.idMask
   for (const node of fifo(queue)) {
     for (const edge of node.edges.values()) {

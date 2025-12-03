@@ -1,9 +1,9 @@
-import {copyArr, copyEmptyArr, type AnyArray, setArr} from './array.js'
+import {type AnyArray, copyArr, copyEmptyArr, setArr} from './array.js'
 import {range} from './iterable.js'
 import {posMod} from './math.js'
 import type {Lengthened, Sliceable} from './types.js'
+import vec, {type ReadonlyVec2, type Vec2} from './vec.js'
 import vec2 from './vec2.js'
-import vec, {type Vec2, type ReadonlyVec2} from './vec.js'
 
 interface MatrixLike extends Lengthened {
   width: number
@@ -191,7 +191,7 @@ export class Matrix<T extends AnyArray = AnyArray>
     padLen?: number,
   ): string {
     // Simplify cell formats and determine pad length.
-    let outs: (string | number)[] = []
+    const outs: (string | number)[] = []
     const autoPadLen = padLen === undefined
     padLen ??= 0
     for (let y = 0; y < this.#height; y++) {
@@ -290,14 +290,8 @@ export function* rotatedKeys(
   for (let i = 0; i < m.length; i++) {
     const newX = i % newW
     const newY = (i - newX) / newW
-    const x =
-      double ? w - newX - 1
-      : pos ? newY
-      : w - newY - 1
-    const y =
-      double ? h - newY - 1
-      : pos ? h - newX - 1
-      : newX
+    const x = double ? w - newX - 1 : pos ? newY : w - newY - 1
+    const y = double ? h - newY - 1 : pos ? h - newX - 1 : newX
     yield y * w + x
   }
 }

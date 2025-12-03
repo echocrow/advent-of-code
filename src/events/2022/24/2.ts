@@ -2,8 +2,8 @@ import io from '#lib/io.js'
 import memoize from '#lib/memo.js'
 import {PriorityQueue} from '#lib/queue.js'
 import {strRec} from '#lib/types.js'
-import vec2, {type Vec2} from '#lib/vec2.js'
 import vec, {VecSet} from '#lib/vec.js'
+import vec2, {type Vec2} from '#lib/vec2.js'
 
 // Parse.
 let mapW = 0
@@ -48,7 +48,7 @@ const moves: readonly Vec2[] = [
 ]
 function findShortestTime(start: Vec2, end: Vec2, startTime: number) {
   const queue = new PriorityQueue(startTime, [startTime, start] as const)
-  let visited = new VecSet()
+  const visited = new VecSet()
   for (const {item} of queue) {
     const [time, pos] = item
     const nextTime = time + 1

@@ -1,6 +1,6 @@
 import io from '#lib/io.js'
 import {filo, filter, first} from '#lib/iterable.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 import {MemoMap} from '#lib/memo.js'
 
 function bitFlag(width: number) {
@@ -39,7 +39,7 @@ const end = nodesMap.get(maze.length - 2)
     queue.push(from)
 
     let len = 0
-    let next: number[] = [i]
+    const next: number[] = [i]
     while (next.length === 1) {
       i = next.pop()!
       seen[i] = 1

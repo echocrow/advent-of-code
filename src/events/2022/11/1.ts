@@ -15,7 +15,7 @@ class Monkey {
 
   inspect(item: number): number {
     this.inspections++
-    const delta = isNaN(this.opDelta) ? item : this.opDelta
+    const delta = Number.isNaN(this.opDelta) ? item : this.opDelta
     item = this.opMulti ? item * delta : item + delta
     item = Math.floor(item / 3)
     return item
@@ -41,11 +41,11 @@ function runRound(monkeys: Monkey[]) {
 const monkeys: Monkey[] = []
 const monkeyRe = joinRegExp([
   /Monkey \d+:/,
-  /  Starting items: (?<items>\d+[, \d]+)/,
-  /  Operation: new = old (?<op>[+*]) (?<opDelta>\d+|old)/,
-  /  Test: divisible by (?<div>\d+)/,
-  /    If true: throw to monkey (?<pal0>\d+)/,
-  /    If false: throw to monkey (?<pal1>\d+)/,
+  / {2}Starting items: (?<items>\d+[, \d]+)/,
+  / {2}Operation: new = old (?<op>[+*]) (?<opDelta>\d+|old)/,
+  / {2}Test: divisible by (?<div>\d+)/,
+  / {4}If true: throw to monkey (?<pal0>\d+)/,
+  / {4}If false: throw to monkey (?<pal1>\d+)/,
 ])
 for await (const {groups = {}} of io.readRegExp(monkeyRe)) {
   monkeys.push(

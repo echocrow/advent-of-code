@@ -18,7 +18,7 @@ const inputP2 = dedent`
   ..##..###
   #....#..#
 `
-const input = inputP1 + '\n\n' + inputP2
+const input = `${inputP1}\n\n${inputP2}`
 
 await testPart(import('./1.js?url'), [
   [inputP1, 5],

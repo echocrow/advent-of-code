@@ -4,7 +4,7 @@ import {range} from '#lib/iterable.js'
 
 const numsRe = /\d+/g
 function findNums(str: string) {
-  return [...str.matchAll(numsRe)].map((m) => parseInt(m[0]))
+  return [...str.matchAll(numsRe)].map((m) => parseInt(m[0], 10))
 }
 
 let result = 0

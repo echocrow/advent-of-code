@@ -6,7 +6,6 @@ class Module {
   public sig = false
   public inputs = [] as (Module | undefined)[]
   public outputs = [] as (Module | undefined)[]
-  constructor() {}
   process(from: Module): boolean {
     this.sig = from.sig
     return true
@@ -39,9 +38,7 @@ for await (const [_, pre, name, outs] of io.readRegExp(/([%&])?(\w+) -> (.+)/, {
   appendix: 'button -> broadcaster',
 })) {
   const ModCls =
-    pre === '%' ? FlipFlipModule
-    : pre === '&' ? ConjunctionModule
-    : Module
+    pre === '%' ? FlipFlipModule : pre === '&' ? ConjunctionModule : Module
   modules.set(name!, new ModCls())
   const outNames = outs!.split(', ')
   for (const out of outNames) inWires.get(out).push(name!)

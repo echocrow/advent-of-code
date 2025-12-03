@@ -17,7 +17,7 @@ await testPart(import('./1.js?url'), [input, 136])
 
 await testPart(import('./2.js?url'), [
   [input, 64],
-  ['__spins=1\n' + input, 87],
-  ['__spins=2\n' + input, 69],
-  ['__spins=3\n' + input, 69],
+  [`__spins=1\n${input}`, 87],
+  [`__spins=2\n${input}`, 69],
+  [`__spins=3\n${input}`, 69],
 ])

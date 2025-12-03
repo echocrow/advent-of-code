@@ -1,5 +1,5 @@
 import io from '#lib/io.js'
-import {entries, sum, reversed} from '#lib/iterable.js'
+import {entries, reversed, sum} from '#lib/iterable.js'
 import {sumIntSeries} from '#lib/math.js'
 
 class File {

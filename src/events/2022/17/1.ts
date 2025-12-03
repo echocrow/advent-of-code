@@ -79,10 +79,10 @@ class Tower {
     return false
   }
 }
-let map = new Tower(7)
+const map = new Tower(7)
 
 const ROCKS = 2022
-let rock = new Rock(new Uint8Matrix(), 0, 0)
+const rock = new Rock(new Uint8Matrix(), 0, 0)
 for (let r = 0; r < ROCKS; r++) {
   rock.shape = nextRockShape()
   rock.x = 2

@@ -4,7 +4,7 @@ import {MemoQueue} from '#lib/queue.js'
 
 // Parse.
 const map = new Uint8Matrix()
-let starts: number[] = []
+const starts: number[] = []
 let end = -1
 let p = -1
 const base = 'a'.charCodeAt(0)

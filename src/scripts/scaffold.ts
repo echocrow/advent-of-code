@@ -37,6 +37,6 @@ await Promise.all(
   fileCopies.map(([outPath, tplPath]) => copyFile(tplPath, outPath)),
 )
 
-console.log(`Scaffolded files:`)
+console.log('Scaffolded files:')
 for (const [outPath] of fileCopies)
   console.log(`  ${path.relative(srcDir, outPath)}`)

@@ -114,11 +114,7 @@ const map = new Uint8Matrix(
     line
       .padEnd(_mapWidth, ' ')
       .split('')
-      .map((c) =>
-        c === '#' ? Cell.Wall
-        : c === '.' ? Cell.Free
-        : 0,
-      ),
+      .map((c) => (c === '#' ? Cell.Wall : c === '.' ? Cell.Free : 0)),
   ),
   _mapWidth,
 )
@@ -163,13 +159,13 @@ type Action = number | Turn
 const actions: Action[] = [...instContents.matchAll(/(?:[\d]+|R|L)/g)].map(
   ([match]) => {
     const moves = Number(match)
-    return !isNaN(moves) ? moves : (match as Turn)
+    return !Number.isNaN(moves) ? moves : (match as Turn)
   },
 )
 
 // Handle movement.
 function mapToMesh(i: number): number {
-  let [x, y] = map.iToVec(i)
+  const [x, y] = map.iToVec(i)
   const meshX = Math.floor((x / map.width) * meshWidth)
   const meshY = Math.floor((y / map.height) * meshHeight)
   return meshY * meshWidth + meshX
@@ -192,7 +188,7 @@ function rotateTileVec(v: Vec2, angle: Dir): Vec2 {
   return vec2(x, y)
 }
 function crossEdge(from: number, angle: Dir): readonly [number, Dir] {
-  let [x, y] = map.iToVec(from)
+  const [x, y] = map.iToVec(from)
   // Find current mesh.
   const fromMesh = mapToMesh(from)
   const [fromFace, fromFaceAngle] = meshFaces[fromMesh]!
@@ -222,7 +218,7 @@ function step(from: number, angle: Dir): readonly [number, Dir] {
 }
 
 // Move.
-let pos = map.$.findIndex((c) => c === Cell.Free)
+let pos = map.$.indexOf(Cell.Free)
 let angle: Dir = Dir.R
 for (const action of actions) {
   // Handle rotation.

@@ -1,5 +1,5 @@
 import io from '#lib/io.js'
-import {Uint8Matrix, neighbors} from '#lib/matrix.js'
+import {neighbors, Uint8Matrix} from '#lib/matrix.js'
 import vec2, {type Vec2} from '#lib/vec2.js'
 
 const DIR = {
@@ -25,7 +25,7 @@ const pieceIds = Object.fromEntries(
 
 // Parse maze.
 let startPos = vec2()
-let maze = new Uint8Matrix()
+const maze = new Uint8Matrix()
 for await (const line of io.readLines()) {
   const pieces = ([...line] as PieceChar[]).map(
     (char, i) => pieceIds[char] ?? ((startPos = vec2(i, maze.height)), 0),

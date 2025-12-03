@@ -1,7 +1,7 @@
 import io from '#lib/io.js'
 
 let seeds = [...(await io.readLine())?.matchAll(/\d+/g)!].map(Number)
-let mapped = new Uint8Array(seeds.length)
+const mapped = new Uint8Array(seeds.length)
 for await (const [line] of io.readRegExp(/^\d[\d\s]+\d$|^$/m)) {
   if (!line) {
     mapped.fill(0)

@@ -19,7 +19,7 @@ function findV(rows: Iterable<Uint8Array>, ignoreIdx = 0): number {
 }
 
 let result = 0
-let map = new Uint8Matrix()
+const map = new Uint8Matrix()
 for await (const line of io.readLines({flush: true})) {
   if (line) {
     map.pushRow([...line].map((c) => +(c === '#')))
