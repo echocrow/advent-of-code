@@ -23,7 +23,8 @@
       },
       "style": {
         "noNonNullAssertion": "off",
-        "noUnusedTemplateLiteral": {"level": "info", "fix": "safe"}
+        "noUnusedTemplateLiteral": {"level": "info", "fix": "safe"},
+        "useConst": {"level": "info", "fix": "unsafe"}
       },
       "suspicious": {
         "noAssignInExpressions": "off",
