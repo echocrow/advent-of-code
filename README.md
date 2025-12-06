@@ -16,7 +16,7 @@ Contains personal solutions[^1] to the [Advent of Code](https://adventofcode.com
 pnpm install
 
 # Scaffold universal input & output files.
-pnpm init
+pnpm run init
 ```
 
 ## Usage TL;DR
