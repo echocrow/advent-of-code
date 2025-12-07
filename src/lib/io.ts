@@ -137,6 +137,8 @@ class IO {
   ): AsyncGenerator<RegExpExecArray, void, undefined> {
     this.#appendix = opts.appendix
 
+    const isGlobal = regExp.flags.includes('g')
+
     let buff = ''
     let line: string | undefined
     while ((line = await this.readLine()) !== undefined) {
@@ -145,12 +147,14 @@ class IO {
       let matched = false
       while ((res = regExp.exec(buff))) {
         matched = true
-        buff = buff.slice(res.index + res[0].length || 1)
+        if (!isGlobal) buff = buff.slice(res.index + res[0].length || 1)
         yield res
         // Manually break when buffer was fully consumed. This prevents
         // infinite loops when matching empty lines.
-        if (!buff) break
+        if (regExp.lastIndex >= buff.length) break
       }
+      buff = buff.slice(regExp.lastIndex)
+
       // Skip newline when we matched _and_ fully consumed the buffer for a
       // cleaner buffer next round (no leading newline after flushed buffer).
       if (!matched || buff) buff += '\n'
