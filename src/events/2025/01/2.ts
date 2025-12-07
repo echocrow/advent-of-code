@@ -6,23 +6,19 @@ const DIAL_LEN = 100
 let result = 0
 let pos = 50
 for await (const line of io.readLines()) {
-  const step = line[0] === 'L' ? -1 : 1
+  const isLeft = line[0] === 'L'
   const steps = Number(line.slice(1))
 
-  const nextPos = pos + steps * step
-  const nextPos2 = posMod(nextPos, DIAL_LEN)
+  // Easier to mirror the world than to come up with a formula for right _and_
+  // left turns.
+  if (isLeft && pos) pos = DIAL_LEN - pos
 
-  let crossed = 0
-  if (step > 0) {
-    crossed = Math.floor(nextPos / DIAL_LEN)
-  } else if (nextPos <= 0) {
-    crossed = Math.ceil(Math.abs(nextPos / DIAL_LEN))
-    if (!pos) crossed--
-    if (!nextPos2) crossed++
-  }
+  const nextPos = pos + steps
+  result += Math.floor(nextPos / DIAL_LEN)
 
-  pos = nextPos2
-  result += crossed
+  pos = posMod(nextPos, DIAL_LEN)
+
+  if (isLeft && pos) pos = DIAL_LEN - pos
 }
 
 io.write(result)
