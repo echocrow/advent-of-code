@@ -127,3 +127,10 @@ export function binSearch(
 export function filledArr<T>(item: T, length: number): T[] {
   return Array(length).fill(item)
 }
+
+export function swap(arr: unknown[], i: number, j: number): void {
+  if (i === j) return
+  const temp = arr[i]!
+  arr[i] = arr[j]!
+  arr[j] = temp
+}
