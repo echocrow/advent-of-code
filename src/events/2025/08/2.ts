@@ -1,5 +1,5 @@
+import {Heap} from '#lib/heap.js'
 import io from '#lib/io.js'
-import {enqueue} from '#lib/queue.js'
 import {unionInto} from '#lib/set.js'
 import vec3, {type Vec3} from '#lib/vec3.js'
 
@@ -21,11 +21,10 @@ class Pair {
   }
 }
 
-const pairs: Pair[] = []
+const pairs = new Heap<Pair>((a, b) => a.dist - b.dist)
 for (let i = 0; i < boxes.length; i++) {
   for (let j = i + 1; j < boxes.length; j++) {
-    const pair = new Pair(boxes[i]!, boxes[j]!)
-    enqueue(pairs, (a, b) => b.dist - a.dist, pair)
+    pairs.push(new Pair(boxes[i]!, boxes[j]!))
   }
 }
 

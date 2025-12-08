@@ -1,7 +1,7 @@
 import {sortNums} from '#lib/array.js'
+import {Heap} from '#lib/heap.js'
 import io from '#lib/io.js'
 import {product} from '#lib/iterable.js'
-import {enqueue} from '#lib/queue.js'
 import {unionInto} from '#lib/set.js'
 import vec3, {type Vec3} from '#lib/vec3.js'
 
@@ -22,15 +22,14 @@ class Pair {
     readonly a: Box,
     readonly b: Box,
   ) {
-    this.dist = a.vec.subtract(b.vec).len
+    this.dist = a.vec.subtract(b.vec).len2
   }
 }
 
-const pairs: Pair[] = []
+const pairs = new Heap<Pair>((a, b) => a.dist - b.dist)
 for (let i = 0; i < boxes.length; i++) {
   for (let j = i + 1; j < boxes.length; j++) {
-    const pair = new Pair(boxes[i]!, boxes[j]!)
-    enqueue(pairs, (a, b) => b.dist - a.dist, pair)
+    pairs.push(new Pair(boxes[i]!, boxes[j]!))
   }
 }
 
