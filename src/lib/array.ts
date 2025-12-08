@@ -134,3 +134,13 @@ export function swap(arr: unknown[], i: number, j: number): void {
   arr[i] = arr[j]!
   arr[j] = temp
 }
+
+export function extract<T>(
+  arr: T[],
+  predicate: (value: T, index: number, obj: T[]) => unknown,
+): T | undefined {
+  const idx = arr.findIndex(predicate)
+  const val = arr[idx]
+  if (idx >= 0) arr.splice(idx, 1)
+  return val
+}
